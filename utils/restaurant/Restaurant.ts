@@ -5,11 +5,13 @@ import { fetchDataSource } from '../data/datasource'
 export class Restaurant implements IRestaurant {
   readonly slug: string
   readonly name: string
+  readonly image: string
   public items: IMenuItemWolt[]
 
-  constructor(slug: string, name: string) {
+  constructor(slug: string, name: string, image: string) {
     this.slug = slug
     this.name = name
+    this.image = image
     this.items = []
   }
 

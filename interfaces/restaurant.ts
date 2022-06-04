@@ -3,6 +3,7 @@ import { IMenuItemWolt } from './wolt'
 export interface IRestaurant {
   slug: string
   name: string
+  image: string
   items?: IMenuItemWolt[]
 }
 

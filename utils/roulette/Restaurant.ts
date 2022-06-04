@@ -22,11 +22,12 @@ export class Roulette {
     }
   }
 
-  public restaurantLottery() {
+  public restaurantLottery(): Restaurant {
     let randomIndex = random(0, this.restaurants.length)
     const restaurant = new Restaurant(
       this.restaurants[randomIndex].slug,
-      this.restaurants[randomIndex].name
+      this.restaurants[randomIndex].name,
+      this.restaurants[randomIndex].image
     )
 
     return restaurant
