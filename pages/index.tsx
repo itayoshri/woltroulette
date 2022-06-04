@@ -1,6 +1,7 @@
 import axios from 'axios'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { useMemo, useState } from 'react'
 import Item, { ItemProps } from '../components/Item'
 
@@ -14,14 +15,15 @@ import Item, { ItemProps } from '../components/Item'
 
 const Home: NextPage = () => {
   const [item, setItem] = useState({ name: '' })
-
+  const router = useRouter()
+  const BASE_URL = 'woltroulette-yanshoofapp-gmailcom.vercel.app'
   useMemo(() => {
     axios
-      .get('/api/item?location=32.05784169999998,34.825958000000014')
+      .get(`${BASE_URL}/api/item?location=32.05784169999998,34.825958000000014`)
       .then((res) => {
         setItem(res.data)
       })
-  }, [])
+  }, [BASE_URL])
   return item.name ? (
     <div className="px-4">
       <Head>
