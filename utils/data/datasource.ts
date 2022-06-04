@@ -24,11 +24,15 @@ export function buildFetchUrl(fetchFor: FetchFor, info: IFetchInfo) {
     }
 
     case 'placeId': {
-      return `https://restaurant-api.wolt.com/v1/google/places/autocomplete/json?input=${info.address}`
+      return encodeURI(
+        `https://restaurant-api.wolt.com/v1/google/places/autocomplete/json?input=${info.address}`
+      )
     }
 
     case 'cords': {
-      return `https://${process.env.CORS_URL}?place_id=${info.placeId}&language=he`
+      return encodeURI(
+        `https://${process.env.CORS_URL}?place_id=${info.placeId}&language=he`
+      )
     }
 
     default:

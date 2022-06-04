@@ -8,6 +8,7 @@ import axios from 'axios'
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { address } = _req.query
+
     const { predictions } = await fetchDataSource('placeId', {
       address: address as string,
     })
