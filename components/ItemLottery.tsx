@@ -8,7 +8,7 @@ import Spinner from './Spinner'
 const BASE_URL = '/api/item'
 
 export interface ItemLotteryProps {
-  location: [string, string]
+  location: [number, number]
 }
 
 export default function ItemLottery({ location }: ItemLotteryProps) {
@@ -17,12 +17,12 @@ export default function ItemLottery({ location }: ItemLotteryProps) {
   const itemLottery = useCallback(() => {
     setLoading(true)
     axios
-      .get(`${BASE_URL}?location=32.05784169999998,34.825958000000014`)
+      .get(`${BASE_URL}?location=${location[0]},${location[1]}`)
       .then((res) => {
         setItem(res.data)
         setLoading(false)
       })
-  }, [])
+  }, [location])
 
   return (
     <div className="flex flex-col items-center h-screen justify-center gap-4 px-4">
