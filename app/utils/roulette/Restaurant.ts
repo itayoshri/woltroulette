@@ -1,8 +1,9 @@
 import { IRestaurant } from '../../interfaces/restaurant'
 import { IMenuItemWolt, IRestaurantResponseWolt } from '../../interfaces/wolt'
+import { isValidItem } from '../data'
 import random from '../data/random'
-import { isValidItem } from '../data/valid'
 import { WOLT } from '../data/wolt'
+import { Item } from '../restaurant/Item'
 import { Restaurant } from '../restaurant/Restaurant'
 
 export class Roulette {
@@ -18,12 +19,13 @@ export class Roulette {
     }
   }
 
-  public async Lottery() {
+  public async Lottery(state: string) {
     let randomIndex = random(0, this.restaurants.length)
     const restaurant = new Restaurant(this.restaurants[randomIndex].name)
     const items = await restaurant.getItems()
     const randomItem = await this.ItemsLottery(items)
-    return randomItem
+    if (randomItem) return new Item(randomItem, restaurant, state).getItem()
+    return false
   }
 
   private async ItemsLottery(items: IMenuItemWolt[]) {
@@ -36,7 +38,12 @@ export class Roulette {
       const randomItem = items[randomIndex]
 
       isValid = isValidItem(randomItem)
-      if (isValid) return randomItem
+      if (isValid)
+        return {
+          name: randomItem.name,
+          price: randomItem.baseprice,
+          id: randomItem.id,
+        }
 
       // break the loop if too many tries
       tries++

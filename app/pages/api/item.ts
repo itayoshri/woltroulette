@@ -1,4 +1,8 @@
-import { Cordinations, IRestaurantResponseWolt } from '../../interfaces/wolt'
+import {
+  Cordinations,
+  IFrontResponseWolt,
+  IRestaurantResponseWolt,
+} from '../../interfaces/wolt'
 import { fetchDataSource } from '../../utils/data/datasource'
 
 import { NextApiRequest, NextApiResponse } from 'next'
@@ -13,8 +17,15 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
       location: cordinations,
     })
 
+    const { city: state } = await fetchDataSource<IFrontResponseWolt>('city', {
+      location: cordinations,
+    })
+
     const roulette = new Roulette(data)
-    const item = await roulette.Lottery()
+    const item = await roulette.Lottery(state)
+
+    if (item) res.status(200).json(item)
+    else res.status(200).json('Try again')
 
     res.status(200).json(item)
   } catch (err: any) {

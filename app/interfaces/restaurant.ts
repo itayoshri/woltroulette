@@ -7,6 +7,6 @@ export interface IRestaurant {
 
 export interface IItem {
   name: string
-  link: string
   price: number
+  id: string
 }
