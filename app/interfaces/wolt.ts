@@ -1,5 +1,5 @@
 type Currency = 'ILS' | string
-type Cordinations = [string, string]
+export type Cordinations = [string, string]
 type Line = 'restaurant' | string
 type Rating = 1 | 2 | 3 | 4 | 5
 
@@ -7,7 +7,7 @@ export interface IDateWolt {
   $date: number
 }
 
-export interface ISectionsWolt {
+export interface ISectionWolt {
   items: IItemWolt[]
   link: ILinkWolt
   name: string
@@ -104,7 +104,7 @@ export interface IRestaurantResponseWolt {
   filtering: IFilteringWolt
   name: string
   page_title: string
-  sections: ISectionsWolt
+  sections: ISectionWolt[]
   show_large_title: boolean
   show_map: boolean
   sorting: unknown
