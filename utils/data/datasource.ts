@@ -28,7 +28,7 @@ export function buildFetchUrl(fetchFor: FetchFor, info: IFetchInfo) {
     }
 
     case 'cords': {
-      return `https://${process.env.CORS_URL}?place_id${info.placeId}&language=he`
+      return `https://${process.env.CORS_URL}?place_id=${info.placeId}&language=he`
     }
 
     default:
