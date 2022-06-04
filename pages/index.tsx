@@ -4,6 +4,7 @@ import loadConfig from 'next/dist/server/config'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useCallback, useMemo, useState } from 'react'
+import Button from '../components/forms/Button'
 import Item, { ItemProps } from '../components/Item'
 import Spinner from '../components/Spinner'
 
@@ -41,12 +42,7 @@ const Home: NextPage = () => {
       ) : (
         <Spinner className="w-10 h-10 fill-primary-500" />
       )}
-      <button
-        className="flex w-fit items-center font-bold justify-center h-11 px-6 gap-6 text-white rounded-lg bg-primary-500"
-        onClick={() => lottery()}
-      >
-        הגרלה
-      </button>
+      <Button onClick={() => lottery()}>הגרלה</Button>
     </div>
   )
 }
