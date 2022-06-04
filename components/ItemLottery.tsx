@@ -25,7 +25,7 @@ export default function ItemLottery({ location }: ItemLotteryProps) {
   }, [location])
 
   return (
-    <div className="flex flex-col items-center h-screen justify-center gap-4 px-4">
+    <div className="flex flex-col items-center justify-center gap-4 px-4">
       {!loading && item.name ? (
         <Item {...(item as ItemProps)} />
       ) : (

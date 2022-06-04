@@ -52,7 +52,7 @@ export default function LocationInput({ onChange }: LocationInputProps) {
               אישור
             </Button>
           </div>
-          <div className="fixed w-screen h-screen bg-black/50"></div>
+          <div className="fixed top-0 w-screen h-screen bg-black/50"></div>
         </>
       )}
     </>
