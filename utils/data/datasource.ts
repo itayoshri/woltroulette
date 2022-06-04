@@ -4,10 +4,11 @@ import { Cordinations } from '../../interfaces/wolt'
 export interface IFetchInfo {
   location?: Cordinations
   slug?: string
+  placeId?: string
   address?: string
 }
 
-export type FetchFor = 'restaurants' | 'city' | 'menu'
+export type FetchFor = 'restaurants' | 'city' | 'menu' | 'cords' | 'placeId'
 
 export function buildFetchUrl(fetchFor: FetchFor, info: IFetchInfo) {
   switch (fetchFor) {
@@ -20,6 +21,14 @@ export function buildFetchUrl(fetchFor: FetchFor, info: IFetchInfo) {
 
     case 'menu': {
       return `https://${process.env.MENU_URL}/${info.slug}/menu`
+    }
+
+    case 'placeId': {
+      return `https://restaurant-api.wolt.com/v1/google/places/autocomplete/json?input=${info.address}`
+    }
+
+    case 'cords': {
+      return `https://${process.env.CORS_URL}?place_id${info.placeId}&language=he`
     }
 
     default:
