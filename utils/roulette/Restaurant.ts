@@ -8,9 +8,12 @@ import { Restaurant } from '../restaurant/Restaurant'
 
 export class Roulette {
   readonly restaurants: IRestaurant[]
+  readonly state: string
 
-  constructor(data: IRestaurantResponseWolt) {
+  constructor(data: IRestaurantResponseWolt, state: string) {
     this.restaurants = []
+    this.state = state
+
     for (let section of data.sections) {
       for (let restaurant of section.items) {
         if (restaurant.venue)
@@ -19,19 +22,19 @@ export class Roulette {
     }
   }
 
-  public async Lottery(state: string) {
+  public restaurantLottery() {
     let randomIndex = random(0, this.restaurants.length)
     const restaurant = new Restaurant(
       this.restaurants[randomIndex].slug,
       this.restaurants[randomIndex].name
     )
-    const items = await restaurant.getItems()
-    const randomItem = await this.ItemsLottery(items)
-    if (randomItem) return new Item(randomItem, restaurant, state)
-    return false
+
+    return restaurant
   }
 
-  private async ItemsLottery(items: IMenuItemWolt[]) {
+  public async ItemsLottery(restaurant: Restaurant) {
+    const items = await restaurant.getItems()
+
     let isValid = false
     let tries = 0
 

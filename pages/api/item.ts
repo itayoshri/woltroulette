@@ -7,6 +7,7 @@ import { fetchDataSource } from '../../utils/data/datasource'
 
 import { NextApiRequest, NextApiResponse } from 'next'
 import { Roulette } from '../../utils/roulette/Restaurant'
+import { Item } from '../../utils/restaurant/Item'
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -20,10 +21,13 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
       location: cordinations,
     })
 
-    const roulette = new Roulette(data)
-    const item = await roulette.Lottery(state)
+    const roulette = new Roulette(data, state)
+    const restaurant = roulette.restaurantLottery()
+    const randomItem = await roulette.ItemsLottery(restaurant)
 
-    if (item)
+    if (randomItem) {
+      const item = new Item(randomItem, restaurant, state)
+
       res.status(200).json({
         name: item.name,
         price: item.price,
@@ -31,7 +35,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
         link: item.link,
         restaurant: item.restaurant.name,
       })
-    else res.status(200).json('Try again')
+    } else res.status(200).json('Try again')
   } catch (err: any) {
     res.status(500).json({ statusCode: 500, message: err.message })
   }
