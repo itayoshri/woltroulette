@@ -4,6 +4,7 @@ import { Cordinations } from '../../interfaces/wolt'
 export interface IFetchInfo {
   location?: Cordinations
   slug?: string
+  address?: string
 }
 
 export type FetchFor = 'restaurants' | 'city' | 'menu'
@@ -31,6 +32,7 @@ export async function fetchDataSource<T extends {}>(
   info: IFetchInfo
 ) {
   const url = buildFetchUrl(fetchFor, info)
+  console.log(url)
   const res = await axios.get<T>(url)
   return res.data
 }
