@@ -3,7 +3,7 @@ import { fetchDataSource } from '../../utils/data/datasource'
 
 import { NextApiRequest, NextApiResponse } from 'next'
 import { WOLT } from '../../utils/data/wolt'
-import { RestaurantRoulette } from '../../utils/roulette/Restaurant'
+import { Roulette } from '../../utils/roulette/Restaurant'
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -13,7 +13,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
       location: cordinations,
     })
 
-    const roulette = new RestaurantRoulette(data)
+    const roulette = new Roulette(data)
     const item = await roulette.Lottery()
 
     res.status(200).json(item)
