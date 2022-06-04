@@ -10,6 +10,10 @@ export const isValidItem = (item: IMenuItemWolt): boolean => {
 
 const BASE_URL = 'wolt.com/he/isr'
 
-export const buildItemUrl = (item: IItem, slug: string, state: string) => {
+export const buildItemUrl = (
+  item: IMenuItemWolt,
+  slug: string,
+  state: string
+) => {
   return `https://${BASE_URL}/${state}/restaurant/${slug}/itemid-${item.id}`
 }

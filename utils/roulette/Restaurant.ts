@@ -44,13 +44,8 @@ export class Roulette {
       const randomItem = items[randomIndex]
 
       isValid = isValidItem(randomItem)
-      if (isValid)
-        return {
-          name: randomItem.name,
-          price: randomItem.baseprice,
-          id: randomItem.id,
-          image: randomItem.image,
-        }
+      if (isValid) return new Item(randomItem, restaurant, this.state)
+      return false
 
       // break the loop if too many tries
       tries++

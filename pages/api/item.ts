@@ -23,11 +23,9 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
 
     const roulette = new Roulette(data, state)
     const restaurant = roulette.restaurantLottery()
-    const randomItem = await roulette.ItemsLottery(restaurant)
+    const item = await roulette.ItemsLottery(restaurant)
 
-    if (randomItem) {
-      const item = new Item(randomItem, restaurant, state)
-
+    if (item) {
       res.status(200).json({
         name: item.name,
         price: item.price,
