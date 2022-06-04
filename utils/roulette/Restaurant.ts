@@ -21,7 +21,10 @@ export class Roulette {
 
   public async Lottery(state: string) {
     let randomIndex = random(0, this.restaurants.length)
-    const restaurant = new Restaurant(this.restaurants[randomIndex].name)
+    const restaurant = new Restaurant(
+      this.restaurants[randomIndex].slug,
+      this.restaurants[randomIndex].name
+    )
     const items = await restaurant.getItems()
     const randomItem = await this.ItemsLottery(items)
     if (randomItem) return new Item(randomItem, restaurant, state)

@@ -8,12 +8,14 @@ export class Item implements IItem {
   readonly id: string
   readonly image: string
   readonly link: string
+  readonly restaurant: Restaurant
 
   constructor(item: IItem, restaurant: Restaurant, state: string) {
     this.name = item.name
     this.price = item.price
     this.id = item.id
     this.image = item.image
-    this.link = buildItemUrl(item, restaurant.name, state)
+    this.link = buildItemUrl(item, restaurant.slug, state)
+    this.restaurant = restaurant
   }
 }

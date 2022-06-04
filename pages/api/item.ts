@@ -6,7 +6,6 @@ import {
 import { fetchDataSource } from '../../utils/data/datasource'
 
 import { NextApiRequest, NextApiResponse } from 'next'
-import { WOLT } from '../../utils/data/wolt'
 import { Roulette } from '../../utils/roulette/Restaurant'
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
@@ -30,6 +29,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
         price: item.price,
         image: item.image,
         link: item.link,
+        restaurant: item.restaurant.name,
       })
     else res.status(200).json('Try again')
   } catch (err: any) {
