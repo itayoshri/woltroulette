@@ -29,7 +29,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
         name: item.name,
         price: item.price,
         image: item.image,
-        link: item.image,
+        link: item.link,
       })
     else res.status(200).json('Try again')
   } catch (err: any) {
