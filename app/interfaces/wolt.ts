@@ -115,6 +115,7 @@ export interface IMenuItemWolt {
   name: string
   baseprice: number // in Agorot
   id: string
+  image: string
 }
 
 export interface IFrontResponseWolt {

@@ -24,10 +24,14 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
     const roulette = new Roulette(data)
     const item = await roulette.Lottery(state)
 
-    if (item) res.status(200).json(item)
+    if (item)
+      res.status(200).json({
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        link: item.image,
+      })
     else res.status(200).json('Try again')
-
-    res.status(200).json(item)
   } catch (err: any) {
     res.status(500).json({ statusCode: 500, message: err.message })
   }

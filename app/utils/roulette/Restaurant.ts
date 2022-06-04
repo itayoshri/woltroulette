@@ -24,7 +24,7 @@ export class Roulette {
     const restaurant = new Restaurant(this.restaurants[randomIndex].name)
     const items = await restaurant.getItems()
     const randomItem = await this.ItemsLottery(items)
-    if (randomItem) return new Item(randomItem, restaurant, state).getItem()
+    if (randomItem) return new Item(randomItem, restaurant, state)
     return false
   }
 
@@ -43,6 +43,7 @@ export class Roulette {
           name: randomItem.name,
           price: randomItem.baseprice,
           id: randomItem.id,
+          image: randomItem.image,
         }
 
       // break the loop if too many tries
