@@ -80,7 +80,7 @@ export interface IVenueWolt {
   rating: IRating
   short_description: string
   show_wolt_plus: boolean
-  slug: string //TODO: check what is it
+  slug: string
   tags: string[]
 }
 
@@ -109,4 +109,18 @@ export interface IRestaurantResponseWolt {
   show_map: boolean
   sorting: unknown
   track_id: string
+}
+
+export interface IMenuItemWolt {
+  name: string
+  baseprice: number // in Agorot
+  id: string
+}
+
+export interface IFrontResponseWolt {
+  city: string
+}
+
+export interface IMenuResponseWolt {
+  items: IMenuItemWolt[]
 }

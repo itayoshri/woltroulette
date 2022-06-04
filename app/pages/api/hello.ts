@@ -12,9 +12,9 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
       location: cordinations,
     })
 
-    const resturant = WOLT.toIRestaurant(data.sections[1].items[0])
+    //const resturant = WOLT.toIRestaurant(data.sections[1].items[0])
 
-    res.status(200).json(resturant)
+    res.status(200).json(data)
   } catch (err: any) {
     res.status(500).json({ statusCode: 500, message: err.message })
   }
