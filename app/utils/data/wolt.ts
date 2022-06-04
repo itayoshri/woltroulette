@@ -7,7 +7,6 @@ export class WOLT {
   }
 
   static isResturant(restaurant: IItemWolt): boolean {
-    if (restaurant.venue.slug) return true
-    return false
+    return !!restaurant.venue.slug
   }
 }

@@ -3,6 +3,7 @@ import { fetchDataSource } from '../../utils/data/datasource'
 
 import { NextApiRequest, NextApiResponse } from 'next'
 import { WOLT } from '../../utils/data/wolt'
+import { RestaurantRoulette } from '../../utils/roulette/Restaurant'
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -12,9 +13,10 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
       location: cordinations,
     })
 
-    //const resturant = WOLT.toIRestaurant(data.sections[1].items[0])
+    const roulette = new RestaurantRoulette(data)
+    const item = await roulette.Lottery()
 
-    res.status(200).json(data)
+    res.status(200).json(item)
   } catch (err: any) {
     res.status(500).json({ statusCode: 500, message: err.message })
   }

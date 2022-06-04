@@ -1,6 +1,8 @@
+import { IMenuItemWolt } from './wolt'
+
 export interface IRestaurant {
   name: string
-  items?: IItem[]
+  items?: IMenuItemWolt[]
 }
 
 export interface IItem {
