@@ -14,12 +14,13 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
     })
 
     const placeId = predictions[0].place_id
+    const place = predictions[0].description
 
     const { results } = await fetchDataSource('cords', { placeId })
 
     const cords = results[0].geometry.location
 
-    res.status(200).json([cords.lat, cords.lng])
+    res.status(200).json({ cords: [cords.lat, cords.lng], place })
   } catch (err: any) {
     res.status(500).json({ statusCode: 500, message: err.message })
   }

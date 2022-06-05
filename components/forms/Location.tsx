@@ -19,10 +19,10 @@ export default function LocationInput({ onChange }: LocationInputProps) {
   const [selected, setSelected] = useState('')
 
   const addresToCors = useCallback(() => {
-    axios
-      .get(encodeURI(`${BASE_URL}?address=${input}`))
-      .then((res) => onChange(res.data))
-    setSelected(input)
+    axios.get(encodeURI(`${BASE_URL}?address=${input}`)).then((res) => {
+      onChange(res.data.cords)
+      setSelected(res.data.place)
+    })
   }, [input, onChange])
 
   return (
