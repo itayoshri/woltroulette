@@ -1,3 +1,4 @@
+![logo](https://github.com/itayoshri/woltroulette/blob/main/assets/logo.png?raw=true)
 # [Wolt Roulette](https://woltroulette.vercel.app)
 Generates random items and restaurants from [wolt](https://wolt.com)
 
