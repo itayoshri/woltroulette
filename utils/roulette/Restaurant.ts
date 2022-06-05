@@ -16,7 +16,7 @@ export class Roulette {
 
     for (let section of data.sections) {
       for (let restaurant of section.items) {
-        if (restaurant.venue)
+        if (restaurant.venue && restaurant.venue.online)
           this.restaurants.push(WOLT.toIRestaurant(restaurant))
       }
     }
