@@ -39,7 +39,7 @@ export default function LocationInput({ onChange }: LocationInputProps) {
       </div>
       {opened && (
         <>
-          <div className="flex flex-col py-9 px-4 gap-5 bg-white w-full h-96 absolute bottom-0 z-50 animate-[locationIn_0.3s_ease]">
+          <div className="flex flex-col rounded-t-2xl py-9 px-4 gap-5 bg-white w-full h-96 absolute bottom-0 z-50 animate-[locationIn_0.3s_ease]">
             <div className="flex flex-col gap-1">
               <h1 className="text-2xl font-bold">{YOUR_LOCATION}</h1>
               <p>{TYPE_LOCATION}</p>
@@ -61,7 +61,7 @@ export default function LocationInput({ onChange }: LocationInputProps) {
               אישור
             </Button>
           </div>
-          <div className="fixed top-0 w-screen h-screen bg-black/50"></div>
+          <div className="fixed top-0 w-screen h-screen bg-black/50 z-40"></div>
         </>
       )}
     </>

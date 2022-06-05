@@ -7,8 +7,8 @@ export interface TabProps {
 export default function Tab({ label, onClick, selected }: TabProps) {
   return (
     <button
-      className={`flex flex-col items-center justify-between w-full h-11 font-bold before:bg-primary-500 ${
-        selected ? 'text-primary-500' : ''
+      className={`flex flex-col items-center justify-between w-full h-11 font-bold ${
+        selected ? 'text-primary-500' : 'text-gray-300'
       }`}
       onClick={() => onClick()}
     >
