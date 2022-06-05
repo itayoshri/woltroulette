@@ -10,24 +10,31 @@ export interface LocationInputProps {
 const BASE_URL = '/api/cords'
 const YOUR_LOCATION = 'המיקום שלך'
 const TYPE_LOCATION = 'הקלידו כאן את הכתובת שלכם'
+const CHOOSE_LOACTION = 'בחרו מיקום'
 
 export default function LocationInput({ onChange }: LocationInputProps) {
   const [input, setInput] = useState('')
   const [opened, setOpened] = useState(false)
+  const [selected, setSelected] = useState('')
 
   const addresToCors = useCallback(() => {
     axios
       .get(encodeURI(`${BASE_URL}?address=${input}`))
       .then((res) => onChange(res.data))
+    setSelected(input)
   }, [input, onChange])
 
   return (
     <>
       <div
-        className="w-fit h-11 bg-primary-500 flex justify-center items-center text-white px-6 rounded-full"
+        className={`w-fit h-11 ${
+          selected
+            ? 'bg-primary-500 text-white'
+            : 'bg-white border-2 border-primary-500 text-primary-500'
+        } flex justify-center items-center px-6 rounded-full`}
         onClick={() => setOpened(true)}
       >
-        מיקום
+        {selected ? selected : CHOOSE_LOACTION}
       </div>
       {opened && (
         <>
