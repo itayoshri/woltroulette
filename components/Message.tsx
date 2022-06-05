@@ -1,3 +1,5 @@
+export const ADD_LOCATION = 'בחרו מיקום ונסו שוב'
+
 export interface MessageProps {
   message: string
 }

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState, useCallback } from 'react'
 import Button from './forms/Button'
 import Item, { ItemProps } from './Item'
+import { ADD_LOCATION } from './Message'
 import Spinner from './Spinner'
 
 const BASE_URL = '/api/item'
@@ -20,7 +21,7 @@ export default function ItemLottery({
   const [loading, setLoading] = useState(false)
   const itemLottery = useCallback(() => {
     if (location[0] == 0 && location[1] == 0) {
-      setMessage('בחרו מיקום ונסו שוב')
+      setMessage(ADD_LOCATION)
       setTimeout(() => setMessage(''), 2000)
     } else {
       setMessage('')
