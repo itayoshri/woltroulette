@@ -11,6 +11,7 @@ const BASE_URL = '/api/cords'
 const YOUR_LOCATION = 'המיקום שלך'
 const TYPE_LOCATION = 'הקלידו כאן את הכתובת שלכם'
 const CHOOSE_LOACTION = 'בחרו מיקום'
+const ADDRES_CITY_HOUSE = 'עיר, רחוב ומספר בית'
 
 export default function LocationInput({ onChange }: LocationInputProps) {
   const [input, setInput] = useState('')
@@ -38,15 +39,16 @@ export default function LocationInput({ onChange }: LocationInputProps) {
       </div>
       {opened && (
         <>
-          <div className="flex flex-col py-4 px-4 gap-5 bg-white w-full h-96 absolute bottom-0 z-50 animate-[locationIn_0.4s_ease-out]">
+          <div className="flex flex-col py-9 px-4 gap-5 bg-white w-full h-96 absolute bottom-0 z-50 animate-[locationIn_0.3s_ease]">
             <div className="flex flex-col gap-1">
               <h1 className="text-2xl font-bold">{YOUR_LOCATION}</h1>
               <p>{TYPE_LOCATION}</p>
             </div>
-            <div className="flex justify-center items-center p-0 m-0 w-full bg-white border-2 border-gray-300 h-12 px-3 rounded-xl">
+            <div className="flex justify-center items-center p-0 m-0 w-full hover:border-2 hover:border-primary-500 transition-color duration-100 bg-white border-2 border-gray-300 h-12 px-3 rounded-xl">
               <input
-                className="w-full bg-transparent font-semibold appearance-none focus:outline-none"
+                className="w-full bg-transparent appearance-none focus:outline-none "
                 onChange={(e) => setInput(e.target.value)}
+                placeholder={ADDRES_CITY_HOUSE}
               />
             </div>
             <Button
@@ -54,7 +56,7 @@ export default function LocationInput({ onChange }: LocationInputProps) {
                 addresToCors()
                 setOpened(false)
               }}
-              className="self-end px-9"
+              className="!w-full px-9"
             >
               אישור
             </Button>

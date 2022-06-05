@@ -15,8 +15,8 @@ module.exports = {
       },
       keyframes: {
         locationIn: {
-          '0%': { bottom: '-24rem' },
-          '100%': { bottom: '0rem)' },
+          '0%': { bottom: '-24rem', opacity: '0%' },
+          '100%': { bottom: '0rem)', opacity: '100%' },
         },
       },
     },
