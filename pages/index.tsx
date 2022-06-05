@@ -8,6 +8,7 @@ import Button from '../components/forms/Button'
 import LocationInput from '../components/forms/Location'
 import Item, { ItemProps } from '../components/Item'
 import ItemLottery from '../components/ItemLottery'
+import RestaurantLottery from '../components/RestaurantLottery'
 import Spinner from '../components/Spinner'
 import Tabs from '../components/Tabs'
 
@@ -21,7 +22,7 @@ import Tabs from '../components/Tabs'
 
 const Home: NextPage = () => {
   const [cords, setCords] = useState([0, 0])
-  console.log(cords)
+  const [tab, setTab] = useState(0)
 
   return (
     <div className="flex py-4 flex-col items-center h-screen gap-4">
@@ -33,9 +34,13 @@ const Home: NextPage = () => {
       <div className="flex w-full justify-center border-b-[1px] border-gray-200 pb-4">
         <LocationInput onChange={([_1, _2]) => setCords([_1, _2])} />
       </div>
-      <Tabs />
+      <Tabs onChange={(number) => setTab(number)} />
 
-      <ItemLottery location={[cords[0], cords[1]]} />
+      {tab == 0 ? (
+        <ItemLottery location={[cords[0], cords[1]]} />
+      ) : (
+        <RestaurantLottery location={[cords[0], cords[1]]} />
+      )}
     </div>
   )
 }

@@ -8,6 +8,7 @@ import { fetchDataSource } from '../../utils/data/datasource'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { Roulette } from '../../utils/roulette/Restaurant'
 import { Item } from '../../utils/restaurant/Item'
+import { buildRestaurantUrl } from '../../utils/data'
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -28,6 +29,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
       name: restaurant.name,
       slug: restaurant.slug,
       image: restaurant.image,
+      link: buildRestaurantUrl(restaurant.slug, state),
     })
   } catch (err: any) {
     res.status(500).json({ statusCode: 500, message: err.message })

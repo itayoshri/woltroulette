@@ -17,3 +17,7 @@ export const buildItemUrl = (
 ) => {
   return `https://${BASE_URL}/${state}/restaurant/${slug}/itemid-${item.id}`
 }
+
+export const buildRestaurantUrl = (slug: string, state: string) => {
+  return `https://${BASE_URL}/${state}/restaurant/${slug}`
+}
