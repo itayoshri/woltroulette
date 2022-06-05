@@ -10,22 +10,29 @@ const BASE_URL = '/api/restaurant'
 
 export interface RestaurantLotteryProps {
   location: [number, number]
+  setMessage(message: string): unknown
 }
 
 export default function RestaurantLottery({
   location,
+  setMessage,
 }: RestaurantLotteryProps) {
   const [restaurant, setRestaurant] = useState({ name: '' })
   const [loading, setLoading] = useState(false)
   const itemLottery = useCallback(() => {
-    setLoading(true)
-    axios
-      .get(`${BASE_URL}?location=${location[0]},${location[1]}`)
-      .then((res) => {
-        setRestaurant(res.data)
-        setLoading(false)
-      })
-  }, [location])
+    if (location[0] == 0 && location[1] == 0) {
+      setMessage('בחרו מיקום ונסו שוב')
+      setTimeout(() => setMessage(''), 2000)
+    } else {
+      setLoading(true)
+      axios
+        .get(`${BASE_URL}?location=${location[0]},${location[1]}`)
+        .then((res) => {
+          setRestaurant(res.data)
+          setLoading(false)
+        })
+    }
+  }, [location, setMessage])
 
   return (
     <div className="flex flex-col items-center justify-center gap-4 px-4">
