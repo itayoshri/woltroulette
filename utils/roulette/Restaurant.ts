@@ -46,7 +46,6 @@ export class Roulette {
 
       isValid = isValidItem(randomItem)
       if (isValid) return new Item(randomItem, restaurant, this.state)
-      return false
 
       // break the loop if too many tries
       tries++
