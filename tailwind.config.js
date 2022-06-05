@@ -23,6 +23,9 @@ module.exports = {
           '100%': { top: '2.5rem', opacity: '100%' },
         },
       },
+      height: {
+        mobile: '-webkit-fill-available',
+      },
     },
   },
   plugins: [],
