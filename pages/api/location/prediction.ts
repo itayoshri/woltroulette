@@ -7,11 +7,13 @@ import axios from 'axios'
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { address: search } = _req.query
+    const { search } = _req.query
 
     const { predictions } = await fetchDataSource('placeId', {
       address: search as string,
     })
+
+    console.log(predictions)
 
     res.status(200).json(
       predictions.map((prediction) => {
