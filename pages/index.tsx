@@ -17,7 +17,7 @@ const Home: NextPage = () => {
   const [message, setMessage] = useState('')
 
   return (
-    <div className="flex py-4 flex-col items-center h-screen gap-4 ">
+    <div className="flex py-4 flex-col items-center h-screen ">
       <Head>
         <title>{TITLE}</title>
         <meta name="description" content={DESCRIPTION} />
