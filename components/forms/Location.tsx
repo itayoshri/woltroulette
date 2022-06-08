@@ -7,7 +7,7 @@ export interface LocationInputProps {
   onChange([_0, _1]: number[]): unknown
 }
 
-const BASE_URL = '/api/cords'
+const BASE_URL = '/api/location/cords'
 const YOUR_LOCATION = 'המיקום שלך'
 const TYPE_LOCATION = 'הקלידו כאן את הכתובת שלכם'
 const CHOOSE_LOACTION = 'בחרו מיקום'

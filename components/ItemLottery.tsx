@@ -6,7 +6,7 @@ import Item, { ItemProps } from './Item'
 import { ADD_LOCATION } from './Message'
 import Spinner from './Spinner'
 
-const BASE_URL = '/api/item'
+const BASE_URL = '/api/wolt/item'
 
 export interface ItemLotteryProps {
   location: [number, number]

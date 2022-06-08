@@ -7,7 +7,7 @@ import { ADD_LOCATION } from './Message'
 import Restaurant, { RestaurantProps } from './Restaurant'
 import Spinner from './Spinner'
 
-const BASE_URL = '/api/restaurant'
+const BASE_URL = '/api/wolt/restaurant'
 
 export interface RestaurantLotteryProps {
   location: [number, number]

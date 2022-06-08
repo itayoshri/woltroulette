@@ -2,14 +2,11 @@ import {
   Cordinations,
   IFrontResponseWolt,
   IRestaurantResponseWolt,
-} from '../../interfaces/wolt'
-import { fetchDataSource } from '../../utils/data/datasource'
+} from '../../../interfaces/wolt'
+import { fetchDataSource } from '../../../utils/data/datasource'
 
 import { NextApiRequest, NextApiResponse } from 'next'
-import { Roulette } from '../../utils/roulette/Restaurant'
-import { Item } from '../../utils/restaurant/Item'
-import { buildRestaurantUrl } from '../../utils/data'
-
+import { Roulette } from '../../../utils/roulette/Restaurant'
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { location } = _req.query
@@ -24,13 +21,17 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
 
     const roulette = new Roulette(data, state)
     const restaurant = roulette.restaurantLottery()
+    const item = await roulette.ItemsLottery(restaurant)
 
-    res.status(200).json({
-      name: restaurant.name,
-      slug: restaurant.slug,
-      image: restaurant.image,
-      link: buildRestaurantUrl(restaurant.slug, state),
-    })
+    if (item) {
+      res.status(200).json({
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        link: item.link,
+        restaurant: item.restaurant.name,
+      })
+    } else res.status(200).json('Try again')
   } catch (err: any) {
     res.status(500).json({ statusCode: 500, message: err.message })
   }

@@ -1,5 +1,5 @@
-import { Cordinations, IFrontResponseWolt } from '../../interfaces/wolt'
-import { fetchDataSource } from '../../utils/data/datasource'
+import { Cordinations, IFrontResponseWolt } from '../../../interfaces/wolt'
+import { fetchDataSource } from '../../../utils/data/datasource'
 
 import { NextApiRequest, NextApiResponse } from 'next'
 

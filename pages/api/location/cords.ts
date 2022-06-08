@@ -1,8 +1,8 @@
-import { Cordinations, IFrontResponseWolt } from '../../interfaces/wolt'
-import { fetchDataSource } from '../../utils/data/datasource'
+import { Cordinations, IFrontResponseWolt } from '../../../interfaces/wolt'
+import { fetchDataSource } from '../../../utils/data/datasource'
 
 import { NextApiRequest, NextApiResponse } from 'next'
-import { ICordsReq } from '../../interfaces/cords'
+import { ICordsReq } from '../../../interfaces/cords'
 import axios from 'axios'
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
