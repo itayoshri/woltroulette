@@ -39,10 +39,11 @@ export default function LocationInput({ onChange }: LocationInputProps) {
   }
 
   useMemo(() => {
-    axios.get(encodeURI(`${PREDICTIONS_URL}?search=${input}`)).then((res) => {
-      setPredictions(res.data)
-      setShowPredictions(true)
-    })
+    if (input !== '')
+      axios.get(encodeURI(`${PREDICTIONS_URL}?search=${input}`)).then((res) => {
+        setPredictions(res.data)
+        setShowPredictions(true)
+      })
   }, [input])
 
   return (
