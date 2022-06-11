@@ -9,6 +9,7 @@ export interface IFetchInfo {
 }
 
 export type FetchFor = 'restaurants' | 'city' | 'menu' | 'cords' | 'placeId'
+const PLACES_AUTOCOMPLETE_CONFIG = 'language=he'
 
 export function buildFetchUrl(fetchFor: FetchFor, info: IFetchInfo) {
   switch (fetchFor) {
@@ -25,7 +26,7 @@ export function buildFetchUrl(fetchFor: FetchFor, info: IFetchInfo) {
 
     case 'placeId': {
       return encodeURI(
-        `https://restaurant-api.wolt.com/v1/google/places/autocomplete/json?input=${info.address}`
+        `https://restaurant-api.wolt.com/v1/google/places/autocomplete/json?input=${info.address}&${PLACES_AUTOCOMPLETE_CONFIG}`
       )
     }
 
@@ -45,7 +46,6 @@ export async function fetchDataSource<T extends {}>(
   info: IFetchInfo
 ) {
   const url = buildFetchUrl(fetchFor, info)
-  console.log(url)
   const res = await axios.get<T>(url)
   return res.data
 }
