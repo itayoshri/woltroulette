@@ -1,13 +1,15 @@
 import axios from 'axios'
-import { useCallback, useEffect, useState } from 'react'
-import useAutoComplete from '../../hooks/useAutoComplete'
+import { useCallback, useMemo, useState } from 'react'
+import { IPrediction } from '../../pages/api/location/prediction'
 import Button from './Button'
+import Results from './Results'
 
 export interface LocationInputProps {
   onChange([_0, _1]: number[]): unknown
 }
 
-const BASE_URL = '/api/location/cords'
+const CORDS_URL = '/api/location/cords'
+const PREDICTIONS_URL = '/api/location/prediction'
 const YOUR_LOCATION = 'המיקום שלך'
 const TYPE_LOCATION = 'הקלידו כאן את הכתובת שלכם'
 const CHOOSE_LOACTION = 'בחרו מיקום'
@@ -18,12 +20,30 @@ export default function LocationInput({ onChange }: LocationInputProps) {
   const [opened, setOpened] = useState(false)
   const [selected, setSelected] = useState('')
 
-  const addresToCors = useCallback(() => {
-    axios.get(encodeURI(`${BASE_URL}?address=${input}`)).then((res) => {
-      onChange(res.data.cords)
-      setSelected(res.data.place)
+  const addresToCors = useCallback(
+    (placeId: string) => {
+      axios.get(encodeURI(`${CORDS_URL}?placeId=${placeId}`)).then((res) => {
+        onChange(res.data.cords)
+      })
+    },
+    [onChange]
+  )
+
+  const [predictions, setPredictions] = useState([] as IPrediction[])
+  const [showPredictions, setShowPredictions] = useState(false)
+
+  const setLocation = ({ place, placeId }: IPrediction) => {
+    setSelected(place)
+    setShowPredictions(false)
+    addresToCors(placeId)
+  }
+
+  useMemo(() => {
+    axios.get(encodeURI(`${PREDICTIONS_URL}?search=${input}`)).then((res) => {
+      setPredictions(res.data)
+      setShowPredictions(true)
     })
-  }, [input, onChange])
+  }, [input])
 
   return (
     <>
@@ -44,16 +64,24 @@ export default function LocationInput({ onChange }: LocationInputProps) {
               <h1 className="text-2xl font-bold">{YOUR_LOCATION}</h1>
               <p>{TYPE_LOCATION}</p>
             </div>
-            <div className="flex justify-center items-center p-0 m-0 w-full hover:border-2 hover:border-primary-500 transition-color duration-100 bg-white border-2 border-gray-300 h-12 px-3 rounded-xl">
-              <input
-                className="w-full bg-transparent appearance-none focus:outline-none "
-                onChange={(e) => setInput(e.target.value)}
-                placeholder={ADDRES_CITY_HOUSE}
-              />
+            <div className=" relative">
+              <div className="flex justify-center items-center p-0 m-0 w-full hover:border-2 hover:border-primary-500 transition-color duration-100 bg-white border-2 border-gray-300 h-12 px-3 rounded-xl">
+                <input
+                  className="w-full bg-transparent appearance-none focus:outline-none "
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder={ADDRES_CITY_HOUSE}
+                />
+              </div>
+              {predictions.length && showPredictions ? (
+                <Results
+                  results={predictions}
+                  onClick={(index) => setLocation(predictions[index])}
+                />
+              ) : null}
             </div>
             <Button
               onClick={() => {
-                addresToCors()
+                setInput('')
                 setOpened(false)
               }}
               className="!w-full px-9"
@@ -61,7 +89,13 @@ export default function LocationInput({ onChange }: LocationInputProps) {
               אישור
             </Button>
           </div>
-          <div className="fixed top-0 w-screen h-screen bg-black/50 z-40" onClick={() => setOpened(false)}/>
+          <div
+            className="fixed top-0 w-screen h-screen bg-black/50 z-40"
+            onClick={() => {
+              setInput('')
+              setOpened(false)
+            }}
+          />
         </>
       )}
     </>

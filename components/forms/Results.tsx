@@ -1,6 +1,6 @@
 export interface IPlaceResult {
   placeId: string
-  placeName: string
+  place: string
 }
 
 export interface ResultsProps {
@@ -17,7 +17,7 @@ export default function Results({ results, onClick }: ResultsProps) {
           onClick={() => onClick(index)}
           className="w-full py-1 text-right px-3"
         >
-          {result.placeName}
+          {result.place}
         </button>
       ))}
     </div>
