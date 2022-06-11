@@ -7,6 +7,7 @@ import { ADD_LOCATION } from './Message'
 import Spinner from './Spinner'
 
 const BASE_URL = '/api/wolt/item'
+export const NO_RESTAURANTS = 'לא נמצאו מסעדות באזוריכם'
 
 export interface ItemLotteryProps {
   location: [number, number]
@@ -22,7 +23,6 @@ export default function ItemLottery({
   const itemLottery = useCallback(() => {
     if (location[0] == 0 && location[1] == 0) {
       setMessage(ADD_LOCATION)
-      setTimeout(() => setMessage(''), 2000)
     } else {
       setMessage('')
       setLoading(true)
@@ -30,6 +30,10 @@ export default function ItemLottery({
         .get(`${BASE_URL}?location=${location[0]},${location[1]}`)
         .then((res) => {
           setItem(res.data)
+          setLoading(false)
+        })
+        .catch(() => {
+          setMessage(NO_RESTAURANTS)
           setLoading(false)
         })
     }

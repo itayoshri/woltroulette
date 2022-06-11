@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import LocationInput from '../components/forms/Location'
 import ItemLottery from '../components/ItemLottery'
 import Message from '../components/Message'
@@ -15,6 +15,11 @@ const Home: NextPage = () => {
   const [cords, setCords] = useState([0, 0])
   const [tab, setTab] = useState(0)
   const [message, setMessage] = useState('')
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setMessage(''), 2000)
+    return () => clearTimeout(timeout)
+  }, [message])
 
   return (
     <div className="flex py-4 flex-col items-center h-full max-h-screen absolute w-full">

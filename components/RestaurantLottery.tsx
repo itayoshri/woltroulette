@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useState, useCallback } from 'react'
 import Button from './forms/Button'
 import Item, { ItemProps } from './Item'
+import { NO_RESTAURANTS } from './ItemLottery'
 import { ADD_LOCATION } from './Message'
 import Restaurant, { RestaurantProps } from './Restaurant'
 import Spinner from './Spinner'
@@ -23,13 +24,16 @@ export default function RestaurantLottery({
   const itemLottery = useCallback(() => {
     if (location[0] == 0 && location[1] == 0) {
       setMessage(ADD_LOCATION)
-      setTimeout(() => setMessage(''), 2000)
     } else {
       setLoading(true)
       axios
         .get(`${BASE_URL}?location=${location[0]},${location[1]}`)
         .then((res) => {
           setRestaurant(res.data)
+          setLoading(false)
+        })
+        .catch(() => {
+          setMessage(NO_RESTAURANTS)
           setLoading(false)
         })
     }
