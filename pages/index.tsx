@@ -1,6 +1,7 @@
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useMemo, useState } from 'react'
+import { buildTitleGetStaticProps } from '../components/DocumentHead'
 import LocationInput from '../components/forms/Location'
 import ItemLottery from '../components/ItemLottery'
 import Message from '../components/Message'
@@ -23,11 +24,6 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <Head>
-        <title>{TITLE}</title>
-        <meta name="description" content={DESCRIPTION} />
-        <link rel="icon" href="/icon.png" />
-      </Head>
       <div className="flex py-4 flex-col items-center h-full max-h-screen absolute w-full">
         {message && <Message message={message} />}
         <Top>
@@ -50,5 +46,7 @@ const Home: NextPage = () => {
     </>
   )
 }
+
+export const getStaticProps: GetStaticProps = buildTitleGetStaticProps(TITLE)
 
 export default Home
