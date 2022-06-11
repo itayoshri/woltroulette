@@ -27,6 +27,8 @@ const Home: NextPage = () => {
         <title>{TITLE}</title>
         <meta name="description" content={DESCRIPTION} />
         <link rel="icon" href="/icon.png" />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
       </Head>
       <div className="flex py-4 flex-col items-center h-full max-h-screen absolute w-full">
         {message && <Message message={message} />}
