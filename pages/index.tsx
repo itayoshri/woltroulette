@@ -22,27 +22,32 @@ const Home: NextPage = () => {
   }, [message])
 
   return (
-    <div className="flex py-4 flex-col items-center h-full max-h-screen absolute w-full">
+    <>
       <Head>
         <title>{TITLE}</title>
         <meta name="description" content={DESCRIPTION} />
         <link rel="icon" href="/icon.png" />
       </Head>
-      {message && <Message message={message} />}
-      <Top>
-        <LocationInput onChange={([_1, _2]) => setCords([_1, _2])} />
-      </Top>
-      <Tabs onChange={(number) => setTab(number)} />
+      <div className="flex py-4 flex-col items-center h-full max-h-screen absolute w-full">
+        {message && <Message message={message} />}
+        <Top>
+          <LocationInput onChange={([_1, _2]) => setCords([_1, _2])} />
+        </Top>
+        <Tabs onChange={(number) => setTab(number)} />
 
-      {tab == 0 ? (
-        <ItemLottery location={[cords[0], cords[1]]} setMessage={setMessage} />
-      ) : (
-        <RestaurantLottery
-          location={[cords[0], cords[1]]}
-          setMessage={setMessage}
-        />
-      )}
-    </div>
+        {tab == 0 ? (
+          <ItemLottery
+            location={[cords[0], cords[1]]}
+            setMessage={setMessage}
+          />
+        ) : (
+          <RestaurantLottery
+            location={[cords[0], cords[1]]}
+            setMessage={setMessage}
+          />
+        )}
+      </div>
+    </>
   )
 }
 
