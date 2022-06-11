@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState, useCallback } from 'react'
+import LoadingItem from './Animations/Item'
 import Button from './forms/Button'
 import Item, { ItemProps } from './Item'
 import { ADD_LOCATION } from './Message'
@@ -44,7 +45,7 @@ export default function ItemLottery({
       {!loading && item.name ? (
         <Item {...(item as ItemProps)} />
       ) : loading ? (
-        <Spinner className="w-10 h-10 fill-primary-500" />
+        <LoadingItem />
       ) : null}
       <Button onClick={() => itemLottery()}>הגרלה</Button>
     </div>

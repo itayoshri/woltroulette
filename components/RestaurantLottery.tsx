@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useState, useCallback } from 'react'
+import LoadingRestaurant from './Animations/Restaurant'
 import Button from './forms/Button'
 import Item, { ItemProps } from './Item'
 import { NO_RESTAURANTS } from './ItemLottery'
@@ -44,7 +45,7 @@ export default function RestaurantLottery({
       {!loading && restaurant.name ? (
         <Restaurant {...(restaurant as RestaurantProps)} />
       ) : loading ? (
-        <Spinner className="w-10 h-10 fill-primary-500" />
+        <LoadingRestaurant />
       ) : null}
       <Button onClick={() => itemLottery()}>הגרלה</Button>
     </div>
