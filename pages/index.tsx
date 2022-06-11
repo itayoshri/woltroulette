@@ -8,8 +8,8 @@ import RestaurantLottery from '../components/RestaurantLottery'
 import Tabs from '../components/Tabs'
 import Top from '../components/Top'
 
-const TITLE = 'Wolt Roulette'
-const DESCRIPTION = 'בוחר פריטים ומסעדות אקראיים מ-Wolt'
+export const TITLE = 'Wolt Roulette'
+export const DESCRIPTION = 'בוחר פריטים ומסעדות אקראיים מ-Wolt'
 
 const Home: NextPage = () => {
   const [cords, setCords] = useState([0, 0])
