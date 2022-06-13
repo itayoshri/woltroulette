@@ -32,7 +32,7 @@ export default function LocationInput({ onChange }: LocationInputProps) {
   const [predictions, setPredictions] = useState([] as IPrediction[])
   const [showPredictions, setShowPredictions] = useState(false)
 
-  const inputElem = useRef<typeof JSX.IntrinsicElements.input>()
+  const inputElem = useRef<HTMLInputElement>()
 
   const setLocation = ({ place, placeId }: IPrediction) => {
     setSelected(place)
