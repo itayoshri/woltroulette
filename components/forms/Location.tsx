@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import { IPrediction } from '../../pages/api/location/prediction'
 import Button from './Button'
 import Results from './Results'
@@ -32,10 +32,13 @@ export default function LocationInput({ onChange }: LocationInputProps) {
   const [predictions, setPredictions] = useState([] as IPrediction[])
   const [showPredictions, setShowPredictions] = useState(false)
 
+  const inputElem = useRef<typeof JSX.IntrinsicElements.input>()
+
   const setLocation = ({ place, placeId }: IPrediction) => {
     setSelected(place)
     setShowPredictions(false)
     addresToCors(placeId)
+    inputElem.current.value = place
   }
 
   useMemo(() => {
@@ -71,6 +74,7 @@ export default function LocationInput({ onChange }: LocationInputProps) {
                   className="w-full bg-transparent appearance-none focus:outline-none "
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={ADDRES_CITY_HOUSE}
+                  ref={inputElem}
                 />
               </div>
               {predictions.length && showPredictions ? (
