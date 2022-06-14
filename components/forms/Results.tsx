@@ -10,12 +10,12 @@ export interface ResultsProps {
 
 export default function Results({ results, onClick }: ResultsProps) {
   return (
-    <div className="flex flex-col w-full bg-white shadow-xl shadow-black/20 border-gray-300 border-2 overflow-hidden rounded-xl absolute top-14">
+    <div className="flex flex-col w-full shadow-xl shadow-black/20 border-gray-300 border-2 overflow-hidden rounded-xl absolute top-14">
       {results.map((result, index) => (
         <button
           key={index}
           onClick={() => onClick(index)}
-          className="w-full py-1 text-right px-3"
+          className="w-full py-1 text-right px-3 bg-white hover:bg-gray-200"
         >
           {result.place}
         </button>
