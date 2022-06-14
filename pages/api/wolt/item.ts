@@ -9,11 +9,20 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { Roulette } from '../../../utils/roulette/Restaurant'
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const { location, city: state } = _req.query
+    let { location, city: state } = _req.query
     const cordinations = (location as string).split(',') as Cordinations
     const data = await fetchDataSource<IRestaurantResponseWolt>('restaurants', {
       location: cordinations,
     })
+
+    if (!state) {
+      state = (
+        await fetchDataSource<IFrontResponseWolt>('city', {
+          location: cordinations,
+        })
+      ).city
+    }
+
     const roulette = new Roulette(data, state as string)
     const restaurant = roulette.restaurantLottery()
     const item = await roulette.ItemsLottery(restaurant)
