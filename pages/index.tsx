@@ -12,6 +12,7 @@ export const DESCRIPTION = 'בוחר פריטים ומסעדות אקראיים 
 
 const Home: NextPage = () => {
   const [cords, setCords] = useState([0, 0])
+  const [city, setCity] = useState('')
   const [tab, setTab] = useState(0)
   const [message, setMessage] = useState('')
 
@@ -25,11 +26,15 @@ const Home: NextPage = () => {
       <div className="flex py-4 flex-col items-center h-full overflow-hidden max-h-screen absolute w-full">
         {message && <Message message={message} />}
         <Top>
-          <LocationInput onChange={([_1, _2]) => setCords([_1, _2])} />
+          <LocationInput
+            onChange={([_1, _2]) => setCords([_1, _2])}
+            setCity={setCity}
+          />
         </Top>
         <Tabs onChange={(number) => setTab(number)} />
         {tab == 0 ? (
           <Lottery
+            city={city}
             lotteryType="item"
             location={[cords[0], cords[1]]}
             setMessage={setMessage}
@@ -37,6 +42,7 @@ const Home: NextPage = () => {
           />
         ) : (
           <Lottery
+            city={city}
             lotteryType="restaurant"
             location={[cords[0], cords[1]]}
             setMessage={setMessage}

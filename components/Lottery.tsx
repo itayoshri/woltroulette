@@ -13,6 +13,7 @@ export interface LotteryProps {
   lotteryType: Lottery
   location: [number, number]
   setMessage(message: string): unknown
+  city: string
 }
 
 export const NO_RESTAURANTS = 'לא נמצאו מסעדות באזוריכם'
@@ -21,6 +22,7 @@ export default function Lottery({
   lotteryType,
   location,
   setMessage,
+  city,
 }: LotteryProps) {
   const [results, setResults] = useState({ name: '' })
   const [loading, setLoading] = useState(false)
@@ -41,7 +43,7 @@ export default function Lottery({
       setMessage('')
       setLoading(true)
       axios
-        .get(`${BASE_URL}?location=${location[0]},${location[1]}`)
+        .get(`${BASE_URL}?location=${location[0]},${location[1]}&city=${city}`)
         .then((res) => {
           setResults(res.data)
           setLoading(false)
@@ -51,7 +53,7 @@ export default function Lottery({
           setLoading(false)
         })
     }
-  }, [BASE_URL, location, setMessage])
+  }, [BASE_URL, city, location, setMessage])
 
   return (
     <div className="flex py-8 md:py-6 flex-col md:max-w-lg items-center justify-center gap-4 px-4">

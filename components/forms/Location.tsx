@@ -1,5 +1,12 @@
 import axios from 'axios'
-import { useCallback, useMemo, useRef, useState } from 'react'
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { IPrediction } from '../../pages/api/location/prediction'
 import { Location } from '../icons'
 import Button from './Button'
@@ -7,16 +14,21 @@ import Results from './Results'
 
 export interface LocationInputProps {
   onChange([_0, _1]: number[]): unknown
+  setCity: Dispatch<SetStateAction<string>>
 }
 
 const CORDS_URL = '/api/location/cords'
 const PREDICTIONS_URL = '/api/location/prediction'
+const STATE_URL = '/api/location/state'
 const YOUR_LOCATION = 'המיקום שלך'
 const TYPE_LOCATION = 'הקלידו כאן את הכתובת שלכם'
 const CHOOSE_LOACTION = 'בחרו מיקום'
 const ADDRES_CITY_HOUSE = 'עיר, רחוב ומספר בית'
 
-export default function LocationInput({ onChange }: LocationInputProps) {
+export default function LocationInput({
+  onChange,
+  setCity,
+}: LocationInputProps) {
   const [input, setInput] = useState('')
   const [opened, setOpened] = useState(false)
   const [selected, setSelected] = useState('')
@@ -24,10 +36,16 @@ export default function LocationInput({ onChange }: LocationInputProps) {
   const addresToCors = useCallback(
     (placeId: string) => {
       axios.get(encodeURI(`${CORDS_URL}?placeId=${placeId}`)).then((res) => {
+        const location = res.data.cords
         onChange(res.data.cords)
+        axios
+          .get(encodeURI(`${STATE_URL}?location=${location[0]},${location[1]}`))
+          .then((res) => {
+            setCity(res.data)
+          })
       })
     },
-    [onChange]
+    [onChange, setCity]
   )
 
   const [predictions, setPredictions] = useState([] as IPrediction[])
