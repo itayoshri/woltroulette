@@ -1,6 +1,3 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { IItem } from '../interfaces/restaurant'
 import OrderButton from './OrderButton'
 
 export interface ItemProps {

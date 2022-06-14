@@ -1,6 +1,4 @@
 import Link from 'next/link'
-import { IItem } from '../interfaces/restaurant'
-import { ItemProps } from './Item'
 
 export interface OrderButtonProps {
   link: string
