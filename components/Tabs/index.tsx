@@ -9,7 +9,7 @@ export default function Tabs({ onChange }: { onChange(number: any): unknown }) {
   }
 
   return (
-    <div className="w-full justify-between flex h-11">
+    <div className="w-full md:w-fit md:gap-4 justify-between flex h-11 md:h-fit md:pt-4">
       <Tab
         label="פריט"
         onClick={() => changeSelected(0)}
