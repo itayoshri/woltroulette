@@ -3,9 +3,8 @@ import Head from 'next/head'
 import { useEffect, useMemo, useState } from 'react'
 import { buildTitleGetStaticProps } from '../components/DocumentHead'
 import LocationInput from '../components/forms/Location'
-import ItemLottery from '../components/ItemLottery'
+import Lottery from '../components/Lottery'
 import Message from '../components/Message'
-import RestaurantLottery from '../components/RestaurantLottery'
 import Tabs from '../components/Tabs'
 import Top from '../components/Top'
 
@@ -30,16 +29,19 @@ const Home: NextPage = () => {
           <LocationInput onChange={([_1, _2]) => setCords([_1, _2])} />
         </Top>
         <Tabs onChange={(number) => setTab(number)} />
-
         {tab == 0 ? (
-          <ItemLottery
+          <Lottery
+            lotteryType="item"
             location={[cords[0], cords[1]]}
             setMessage={setMessage}
+            key={0}
           />
         ) : (
-          <RestaurantLottery
+          <Lottery
+            lotteryType="restaurant"
             location={[cords[0], cords[1]]}
             setMessage={setMessage}
+            key={1}
           />
         )}
       </div>
