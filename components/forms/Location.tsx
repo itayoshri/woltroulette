@@ -63,9 +63,11 @@ export default function LocationInput({ onChange }: LocationInputProps) {
       </div>
       {opened && (
         <>
-          <div className="flex flex-col rounded-t-2xl py-9 px-4 gap-5 bg-white w-full h-96 absolute bottom-0 z-50 animate-[locationIn_0.3s_ease]">
+          <div className="flex flex-col md:max-w-[34rem] md:h-fit rounded-t-2xl md:rounded-2xl py-9 md:pb-4 px-4 gap-5 bg-white w-full h-96 absolute bottom-0 md:top-0 md:m-auto md:right-0 md:left-0 z-50 animate-[locationIn_0.3s_ease]">
             <div className="flex flex-col gap-1">
-              <h1 className="text-2xl font-bold">{YOUR_LOCATION}</h1>
+              <h1 className="text-2xl md:text-3xl font-bold">
+                {YOUR_LOCATION}
+              </h1>
               <p>{TYPE_LOCATION}</p>
             </div>
             <div className=" relative">
