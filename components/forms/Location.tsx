@@ -60,7 +60,7 @@ export default function LocationInput({ onChange }: LocationInputProps) {
           width={30}
           className="text-primary-500 hidden md:inline-block"
         />
-        <button
+        <div
           className={`w-fit h-11 ${
             selected
               ? 'bg-primary-500 text-white'
@@ -68,7 +68,7 @@ export default function LocationInput({ onChange }: LocationInputProps) {
           } flex justify-center items-center md:border-0 md:text-primary-500 md:bg-transparent px-6 md:px-0 rounded-full`}
         >
           {selected ? selected : CHOOSE_LOACTION}
-        </button>
+        </div>
       </button>
       {opened && (
         <>
