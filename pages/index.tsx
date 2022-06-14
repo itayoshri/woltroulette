@@ -24,7 +24,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className="flex py-4 flex-col items-center h-full max-h-screen absolute w-full">
+      <div className="flex py-4 flex-col items-center h-full overflow-hidden max-h-screen absolute w-full">
         {message && <Message message={message} />}
         <Top>
           <LocationInput onChange={([_1, _2]) => setCords([_1, _2])} />

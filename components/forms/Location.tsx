@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { IPrediction } from '../../pages/api/location/prediction'
+import { Location } from '../icons'
 import Button from './Button'
 import Results from './Results'
 
@@ -52,20 +53,30 @@ export default function LocationInput({ onChange }: LocationInputProps) {
   return (
     <>
       <button
-        className={`w-fit h-11 ${
-          selected
-            ? 'bg-primary-500 text-white'
-            : 'bg-white border-2 border-primary-500 text-primary-500'
-        } flex justify-center items-center px-6 rounded-full`}
+        className="flex gap-2 items-center"
         onClick={() => setOpened(true)}
       >
-        {selected ? selected : CHOOSE_LOACTION}
+        <Location
+          width={30}
+          className="text-primary-500 hidden md:inline-block"
+        />
+        <div
+          className={`w-fit h-11 ${
+            selected
+              ? 'bg-primary-500 text-white'
+              : 'bg-white border-2 border-primary-500 text-primary-500'
+          } flex justify-center items-center md:border-0 md:text-primary-500 md:bg-transparent px-6 md:px-0 rounded-full`}
+        >
+          {selected ? selected : CHOOSE_LOACTION}
+        </div>
       </button>
       {opened && (
         <>
-          <div className="flex flex-col rounded-t-2xl py-9 px-4 gap-5 bg-white w-full h-96 absolute bottom-0 z-50 animate-[locationIn_0.3s_ease]">
+          <div className="flex flex-col md:max-w-[34rem] md:h-fit rounded-t-2xl md:rounded-2xl py-9 md:pb-4 px-4 gap-5 bg-white w-full h-96 absolute bottom-0 md:top-0 md:m-auto md:right-0 md:left-0 z-50 animate-[locationIn_0.3s_ease]">
             <div className="flex flex-col gap-1">
-              <h1 className="text-2xl font-bold">{YOUR_LOCATION}</h1>
+              <h1 className="text-2xl md:text-3xl font-bold">
+                {YOUR_LOCATION}
+              </h1>
               <p>{TYPE_LOCATION}</p>
             </div>
             <div className=" relative">
@@ -95,7 +106,7 @@ export default function LocationInput({ onChange }: LocationInputProps) {
             </Button>
           </div>
           <div
-            className="fixed top-0 w-screen h-screen bg-black/50 z-40"
+            className="fixed right-0 top-0 w-screen h-screen bg-black/50 z-40"
             onClick={() => {
               setInput('')
               setOpened(false)

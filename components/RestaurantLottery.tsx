@@ -41,7 +41,7 @@ export default function RestaurantLottery({
   }, [location, setMessage])
 
   return (
-    <div className="flex py-8 flex-col items-center justify-center gap-4 px-4">
+    <div className="flex py-8 md:py-6 flex-col md:max-w-lg items-center justify-center gap-4 px-4">
       {!loading && restaurant.name ? (
         <Restaurant {...(restaurant as RestaurantProps)} />
       ) : loading ? (
