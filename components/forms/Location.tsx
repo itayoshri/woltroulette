@@ -51,7 +51,7 @@ export default function LocationInput({ onChange }: LocationInputProps) {
 
   return (
     <>
-      <div
+      <button
         className={`w-fit h-11 ${
           selected
             ? 'bg-primary-500 text-white'
@@ -60,7 +60,7 @@ export default function LocationInput({ onChange }: LocationInputProps) {
         onClick={() => setOpened(true)}
       >
         {selected ? selected : CHOOSE_LOACTION}
-      </div>
+      </button>
       {opened && (
         <>
           <div className="flex flex-col rounded-t-2xl py-9 px-4 gap-5 bg-white w-full h-96 absolute bottom-0 z-50 animate-[locationIn_0.3s_ease]">
