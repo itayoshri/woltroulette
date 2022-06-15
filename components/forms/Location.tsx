@@ -104,6 +104,7 @@ export default function LocationInput({
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={ADDRES_CITY_HOUSE}
                   ref={inputElem}
+                  type="text"
                 />
               </div>
               {predictions.length && showPredictions ? (
