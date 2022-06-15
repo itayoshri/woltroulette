@@ -6,20 +6,25 @@ import Lottery from '../components/Lottery'
 import Message from '../components/Message'
 import Tabs from '../components/Tabs'
 import Top from '../components/Top'
+import { useProvider } from '../contexts'
 
 export const TITLE = 'Wolt Roulette'
 export const DESCRIPTION = 'בוחר פריטים ומסעדות אקראיים מ-Wolt'
+export type Platform = 'Wolt' | '10bis'
 
 const Home: NextPage = () => {
-  const [cords, setCords] = useState([0, 0])
-  const [city, setCity] = useState('')
-  const [tab, setTab] = useState(0)
-  const [message, setMessage] = useState('')
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setMessage(''), 2000)
-    return () => clearTimeout(timeout)
-  }, [message])
+  const {
+    cords,
+    city,
+    tab,
+    platform,
+    message,
+    setCords,
+    setCity,
+    setTab,
+    setPlatform,
+    setMessage,
+  } = useProvider()
 
   return (
     <>
