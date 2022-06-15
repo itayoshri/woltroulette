@@ -1,6 +1,6 @@
 ![logo](https://github.com/itayoshri/woltroulette/blob/main/assets/logo.png?raw=true)
 
-# [Wolt Roulette](https://woltroulette.vercel.app)
+# Wolt Roulette
 
 Generates random items and restaurants from [wolt](https://wolt.com)
 
@@ -18,3 +18,5 @@ the api of the app contains 3 routes:
 
 - `api/wolt/items?location={...,...}` - receives cords as a query param and returns a random item from Wolt
 - `api/wolt/restaurant?location={...,...}` - receives cords as a query param and returns a random restaurant from Wolt
+
+### [Try it yourself!](https://woltroulette.vercel.app/)
