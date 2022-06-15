@@ -88,9 +88,11 @@ export default function LocationInput() {
                 }`
           } flex justify-center items-center md:border-0 ${
             platform === 'wolt' ? 'md:text-primary-500' : 'md:text-tenbis-500'
-          } md:bg-transparent px-6 md:px-0 rounded-full`}
+          } md:bg-transparent px-6 md:px-0 rounded-full overflow-hidden max-w-lg`}
         >
-          {selected ? selected : CHOOSE_LOACTION}
+          <span className=" truncate max-w-[calc(100vw-5rem)]">
+            {selected ? selected : CHOOSE_LOACTION}
+          </span>
         </div>
       </button>
       {opened && (
