@@ -27,6 +27,7 @@ export default function DocumentHead({
       {pageTitle && (
         <Head>
           <title>{pageTitle}</title>
+          <link rel="shortcut icon" href="/icon.png" />
           <meta property="og:url" content={currentURL} key="ogurl" />
           <meta property="og:image" content={previewImage} key="ogimage" />
           <meta property="og:site_name" content={siteName} key="ogsitename" />
