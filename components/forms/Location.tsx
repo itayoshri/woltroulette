@@ -26,6 +26,7 @@ export default function LocationInput() {
   const [input, setInput] = useState('')
   const [opened, setOpened] = useState(false)
   const [selected, setSelected] = useState('')
+  const { platform } = useProvider()
 
   const addresToCors = useCallback(
     (placeId: string) => {
@@ -70,14 +71,24 @@ export default function LocationInput() {
       >
         <Location
           width={30}
-          className="text-primary-500 hidden md:inline-block"
+          className={`${
+            platform === 'wolt' ? 'text-primary-500' : 'text-tenbis-500'
+          } hidden md:inline-block`}
         />
         <div
           className={`w-fit h-11 ${
             selected
-              ? 'bg-primary-500 text-white'
-              : 'bg-white border-2 border-primary-500 text-primary-500'
-          } flex justify-center items-center md:border-0 md:text-primary-500 md:bg-transparent px-6 md:px-0 rounded-full`}
+              ? `${
+                  platform === 'wolt' ? 'bg-primary-500' : 'bg-tenbis-500'
+                } text-white`
+              : `bg-white border-2 ${
+                  platform === 'wolt'
+                    ? 'border-primary-500 text-primary-500'
+                    : 'border-tenbis-500 text-tenbis-500'
+                }`
+          } flex justify-center items-center md:border-0 ${
+            platform === 'wolt' ? 'md:text-primary-500' : 'md:text-tenbis-500'
+          } md:bg-transparent px-6 md:px-0 rounded-full`}
         >
           {selected ? selected : CHOOSE_LOACTION}
         </div>
@@ -92,7 +103,13 @@ export default function LocationInput() {
               <p>{TYPE_LOCATION}</p>
             </div>
             <div className=" relative">
-              <div className="flex justify-center items-center p-0 m-0 w-full hover:border-2 hover:border-primary-500 transition-color duration-100 bg-white border-2 border-gray-300 h-12 px-3 rounded-xl">
+              <div
+                className={`flex justify-center items-center p-0 m-0 w-full hover:border-2 ${
+                  platform === 'wolt'
+                    ? 'hover:border-primary-500'
+                    : 'hover:border-tenbis-500'
+                } transition-color duration-100 bg-white border-2 border-gray-300 h-12 px-3 rounded-xl`}
+              >
                 <input
                   className="w-full bg-transparent appearance-none focus:outline-none "
                   onChange={(e) => setInput(e.target.value)}

@@ -16,7 +16,7 @@ export default function DataProvider({ children }: Wrapper) {
   const [cords, setCords] = useState([0, 0])
   const [city, setCity] = useState('')
   const [tab, setTab] = useState(0)
-  const [platform, setPlatform] = useState('Wolt' as Platform)
+  const [platform, setPlatform] = useState('wolt' as Platform)
   const [message, setMessage] = useState('')
 
   useEffect(() => {

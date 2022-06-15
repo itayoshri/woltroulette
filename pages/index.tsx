@@ -14,7 +14,10 @@ export const DESCRIPTION = 'בוחר פריטים ומסעדות אקראיים 
 export type Platform = 'wolt' | '10bis'
 
 const Home: NextPage = () => {
-  const { tab, platform, message, setTab } = useProvider()
+  const { tab, platform, message, setTab, setPlatform } = useProvider()
+  useEffect(() => {
+    setPlatform('wolt')
+  }, [])
 
   return (
     <Layout>

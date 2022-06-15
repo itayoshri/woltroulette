@@ -12,6 +12,9 @@ module.exports = {
         primary: {
           500: '#009de0',
         },
+        tenbis: {
+          500: '#ff8000',
+        },
       },
       keyframes: {
         locationIn: {
