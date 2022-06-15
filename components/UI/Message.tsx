@@ -1,4 +1,4 @@
-import { useProvider } from '../contexts'
+import { useProvider } from '../../contexts'
 
 export const ADD_LOCATION = 'בחרו מיקום ונסו שוב'
 

@@ -1,5 +1,5 @@
 import Logo from './Logo'
-import { Wrapper } from './types'
+import { Wrapper } from '../types'
 
 export default function Top({ children }: Wrapper) {
   return (

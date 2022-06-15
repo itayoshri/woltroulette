@@ -1,8 +1,8 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { DESCRIPTION, TITLE } from '../pages'
-import { Wrapper } from './types'
+import { DESCRIPTION, TITLE } from '../../pages'
+import { Wrapper } from '../types'
 
 const previewImagePath = '/og_image.png'
 

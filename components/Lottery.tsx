@@ -1,34 +1,36 @@
 import axios from 'axios'
 import { useState, useCallback, useMemo } from 'react'
 import { useProvider } from '../contexts'
+import { Platform } from '../pages'
 import LoadingItem from './Animations/Item'
 import LoadingRestaurant from './Animations/Restaurant'
 import Button from './forms/Button'
 import Item, { ItemProps } from './Item'
-import { ADD_LOCATION } from './Message'
+import { ADD_LOCATION } from './UI/Message'
 import Restaurant, { RestaurantProps } from './Restaurant'
 
 type Lottery = 'restaurant' | 'item'
 
 export interface LotteryProps {
   lotteryType: Lottery
+  platform: Platform
 }
 
 export const NO_RESTAURANTS = 'לא נמצאו מסעדות באזוריכם'
 
-export default function Lottery({ lotteryType }: LotteryProps) {
+export default function Lottery({ lotteryType, platform }: LotteryProps) {
   const { cords, setMessage, city } = useProvider()
   const [results, setResults] = useState({ name: '' })
   const [loading, setLoading] = useState(false)
   const BASE_URL = useMemo(() => {
     switch (lotteryType) {
       case 'item':
-        return '/api/wolt/item'
+        return `/api/${platform}/item`
 
       case 'restaurant':
-        return '/api/wolt/restaurant'
+        return `/api/${platform}/restaurant`
     }
-  }, [lotteryType])
+  }, [lotteryType, platform])
 
   const fetchLottery = useCallback(() => {
     if (cords[0] == 0 && cords[1] == 0) {
