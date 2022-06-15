@@ -13,46 +13,20 @@ export const DESCRIPTION = 'בוחר פריטים ומסעדות אקראיים 
 export type Platform = 'Wolt' | '10bis'
 
 const Home: NextPage = () => {
-  const {
-    cords,
-    city,
-    tab,
-    platform,
-    message,
-    setCords,
-    setCity,
-    setTab,
-    setPlatform,
-    setMessage,
-  } = useProvider()
+  const { tab, platform, message, setTab } = useProvider()
 
   return (
     <>
       <div className="flex py-4 flex-col items-center h-full overflow-hidden max-h-screen absolute w-full">
-        {message && <Message message={message} />}
+        {message && <Message />}
         <Top>
-          <LocationInput
-            onChange={([_1, _2]) => setCords([_1, _2])}
-            setCity={setCity}
-          />
+          <LocationInput />
         </Top>
         <Tabs onChange={(number) => setTab(number)} />
         {tab == 0 ? (
-          <Lottery
-            city={city}
-            lotteryType="item"
-            location={[cords[0], cords[1]]}
-            setMessage={setMessage}
-            key={0}
-          />
+          <Lottery lotteryType="item" key={0} />
         ) : (
-          <Lottery
-            city={city}
-            lotteryType="restaurant"
-            location={[cords[0], cords[1]]}
-            setMessage={setMessage}
-            key={1}
-          />
+          <Lottery lotteryType="restaurant" key={1} />
         )}
       </div>
     </>
