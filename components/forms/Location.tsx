@@ -90,7 +90,7 @@ export default function LocationInput() {
             platform === 'wolt' ? 'md:text-primary-500' : 'md:text-tenbis-500'
           } md:bg-transparent px-6 md:px-0 rounded-full overflow-hidden max-w-lg`}
         >
-          <span className=" truncate max-w-[calc(100vw-5rem)]">
+          <span className=" truncate md:overflow-visible max-w-[calc(100vw-5rem)] md:max-w-[100%]">
             {selected ? selected : CHOOSE_LOACTION}
           </span>
         </div>
