@@ -21,9 +21,7 @@ const Home: NextPage = () => {
   return (
     <Layout>
       {message && <Message />}
-      <Top>
-        <LocationInput />
-      </Top>
+      <Top />
       <Tabs onChange={(number) => setTab(number)} />
       {tab == 0 ? (
         <Lottery lotteryType="item" key={0} platform={'wolt'} />
