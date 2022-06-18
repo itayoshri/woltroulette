@@ -2,7 +2,7 @@
 
 import { createContext, useEffect, useState } from 'react'
 import { Wrapper } from '../components/types'
-import { IProviderContext, Platform } from './types'
+import { IProviderContext, platforms } from './types'
 import { createUseContextHook } from './utils'
 
 export const ProviderContext = createContext<IProviderContext>(
@@ -15,7 +15,7 @@ export default function DataProvider({ children }: Wrapper) {
   const [cords, setCords] = useState<[number, number]>([0, 0])
   const [city, setCity] = useState('')
   const [tab, setTab] = useState(0)
-  const [platform, setPlatform] = useState<Platform>('wolt')
+  const [platform, setPlatform] = useState(platforms[0])
   const [message, setMessage] = useState('')
 
   useEffect(() => {

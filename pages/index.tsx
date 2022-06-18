@@ -13,10 +13,7 @@ export const TITLE = 'Wolt Roulette'
 export const DESCRIPTION = 'בוחר פריטים ומסעדות אקראיים מ-Wolt'
 
 const Home: NextPage = () => {
-  const { tab, platform, message, setTab, setPlatform } = useProvider()
-  useEffect(() => {
-    setPlatform('wolt')
-  }, [])
+  const { tab, message, setTab } = useProvider()
 
   return (
     <Layout>
