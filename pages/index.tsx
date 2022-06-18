@@ -11,7 +11,6 @@ import { useProvider } from '../contexts'
 
 export const TITLE = 'Wolt Roulette'
 export const DESCRIPTION = 'בוחר פריטים ומסעדות אקראיים מ-Wolt'
-export type Platform = 'wolt' | '10bis'
 
 const Home: NextPage = () => {
   const { tab, platform, message, setTab, setPlatform } = useProvider()
