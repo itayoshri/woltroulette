@@ -22,16 +22,6 @@ export default function Lottery({ lotteryType, platform }: LotteryProps) {
   const { cords, setMessage, city } = useProvider()
   const [results, setResults] = useState({ name: '' })
   const [loading, setLoading] = useState(false)
-  const BASE_URL = useMemo(() => {
-    switch (lotteryType) {
-      case 'item':
-        return `/api/${platform}/item`
-
-      case 'restaurant':
-        return `/api/${platform}/restaurant`
-    }
-  }, [lotteryType, platform])
-
   const fetchLottery = useCallback(() => {
     if (cords[0] == 0 && cords[1] == 0) {
       setMessage(ADD_LOCATION)
@@ -39,7 +29,9 @@ export default function Lottery({ lotteryType, platform }: LotteryProps) {
       setMessage('')
       setLoading(true)
       axios
-        .get(`${BASE_URL}?location=${cords[0]},${cords[1]}&city=${city}`)
+        .get(
+          `/api/${platform}/${lotteryType}?location=${cords[0]},${cords[1]}&city=${city}`
+        )
         .then((res) => {
           setResults(res.data)
           setLoading(false)
@@ -49,7 +41,7 @@ export default function Lottery({ lotteryType, platform }: LotteryProps) {
           setLoading(false)
         })
     }
-  }, [BASE_URL, city, cords, setMessage])
+  }, [city, cords, lotteryType, platform, setMessage])
 
   return (
     <div className="flex py-8 md:py-6 flex-col md:max-w-lg items-center justify-center gap-4 px-4">
