@@ -16,9 +16,8 @@ export default function Button({
 
   return (
     <button
-      className={`flex w-fit font-bold items-center justify-center h-11 px-3 gap-6 text-white rounded-lg ${
-        platform === 'wolt' ? 'bg-primary-500' : 'bg-tenbis-500'
-      } ${className}`}
+      className={`flex w-fit font-bold items-center justify-center h-11 px-3 gap-6 text-white rounded-lg bg-primary-500
+       ${className}`}
       onClick={() => onClick()}
     >
       {children}

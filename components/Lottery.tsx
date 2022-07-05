@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { useState, useCallback, useMemo } from 'react'
 import { useProvider } from '../contexts'
-import { Platform } from '../pages'
 import LoadingItem from './Animations/Item'
 import LoadingRestaurant from './Animations/Restaurant'
 import Button from './forms/Button'
 import Item, { ItemProps } from './Item'
 import { ADD_LOCATION } from './UI/Message'
 import Restaurant, { RestaurantProps } from './Restaurant'
+import { Platform } from '../contexts/types'
 
 type Lottery = 'restaurant' | 'item'
 
