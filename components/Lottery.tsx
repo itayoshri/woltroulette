@@ -8,6 +8,7 @@ import Item, { ItemProps } from './Item'
 import { ADD_LOCATION } from './UI/Message'
 import Restaurant, { RestaurantProps } from './Restaurant'
 import { Platform } from '../contexts/types'
+import { Generate } from './icons'
 
 type Lottery = 'restaurant' | 'item'
 
@@ -58,7 +59,13 @@ export default function Lottery({ lotteryType, platform }: LotteryProps) {
           <LoadingRestaurant />
         )
       ) : null}
-      <Button onClick={() => fetchLottery()}>הגרלה</Button>
+      <button
+        onClick={() => fetchLottery()}
+        className="flex flex-row bg-sky-500 gap-2 px-5 py-3 shadow-sky-500 shadow-lg text-white rounded-xl"
+      >
+        <a>הגרלה</a>
+        <Generate width={24} />
+      </button>
     </div>
   )
 }
